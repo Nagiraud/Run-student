@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6FE5F1D3-97AC-130C-C636-1A90BE610FD6}</ProjectGuid>
+    <ProjectGuid>{96C090E0-59F1-5089-145A-8A8CD270AFF6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.AI.Navigation.Samples.Initialization.Editor</AssemblyName>

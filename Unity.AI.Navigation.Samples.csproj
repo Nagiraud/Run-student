@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0ABE55B1-4E1B-60A3-F786-BD1C121E9509}</ProjectGuid>
+    <ProjectGuid>{6DE68CE1-2FA5-FE23-4118-5E9AAA6EC449}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.AI.Navigation.Samples</AssemblyName>
@@ -1139,7 +1139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.AI.Navigation.Samples.Initialization.Editor.csproj">
-      <Project>{6FE5F1D3-97AC-130C-C636-1A90BE610FD6}</Project>
+      <Project>{96C090E0-59F1-5089-145A-8A8CD270AFF6}</Project>
       <Name>Unity.AI.Navigation.Samples.Initialization.Editor</Name>
     </ProjectReference>
   </ItemGroup>

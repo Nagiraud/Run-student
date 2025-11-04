@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -5,7 +7,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(NavMeshAgent))]
 public class TeacherController : MonoBehaviour
 {
+    [Header("Déplacement")]
+    public GameObject[] listePosition;
+    public float speed;
     NavMeshAgent m_Agent;
+
+    [Range(0, 360)] public float angleVision;
+    public float DistanceVision;
 
     void Start()
     {
@@ -15,31 +23,42 @@ public class TeacherController : MonoBehaviour
 
     void Update()
     {
-        if (m_Agent.remainingDistance <= m_Agent.stoppingDistance) //done with path
+        if (m_Agent.remainingDistance <= m_Agent.stoppingDistance) //attend que l'agent termine son déplacement
         {
-            Vector3 point;
-            if (RandomPoint(transform.position, 5, out point)) //pass in our centre point and radius of area
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                m_Agent.SetDestination(point);
-            }
-        }
 
+            // Choix d'un point de patrouille
+            int choosen=Random.Range(0, listePosition.Length);
+            m_Agent.speed = speed;
+            m_Agent.SetDestination(listePosition[choosen].transform.position);
+        }
+        Look();
     }
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+
+    void Look()
     {
+        Collider[] target = Physics.OverlapSphere(transform.position, DistanceVision); // tout les objets à moins de DistaceVision du joueur
+        foreach (Collider col in target) {
+            if (col.tag == "Player")
+            {
+                float signedAngle = Vector3.Angle( // angle du joueur par rapport au centre de vision du professeur
+                    transform.forward,
+                    col.transform.position - transform.position);
 
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
-        {
-            //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
-            //or add a for loop like in the documentation
-            result = hit.position;
-            return true;
-        }
-
-        result = Vector3.zero;
-        return false;
+                if (Mathf.Abs(signedAngle) < angleVision / 2) { 
+                    Debug.Log("Joueur détécté");
+                }
+            }
+         }
     }
+
+    // Debug : affiche la zone de détéction du joueur
+    /*private void OnDrawGizmos()
+    {
+        Handles.color = new Color(0, 1, 0, 0.3f);
+        Handles.DrawSolidArc(transform.position,
+            transform.up,
+            Quaternion.AngleAxis(-angleVision/2f,transform.up)*transform.forward,// orientation de l'angle de vue devant le professeur (autant à gauche et à droite)
+            angleVision,
+            DistanceVision);
+    }*/
 }

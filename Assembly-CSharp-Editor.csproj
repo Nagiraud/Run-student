@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E7329641-F4BE-7664-954B-DB91AFD0356D}</ProjectGuid>
+    <ProjectGuid>{251F951C-EE5C-ED41-953C-8C872CF53695}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -1331,15 +1331,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{56BE4BA0-66D9-02C7-834E-6F926D374419}</Project>
+      <Project>{9821E9D2-6C2F-F52F-18D3-FC61F681FC76}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.AI.Navigation.Samples.csproj">
-      <Project>{0ABE55B1-4E1B-60A3-F786-BD1C121E9509}</Project>
+      <Project>{6DE68CE1-2FA5-FE23-4118-5E9AAA6EC449}</Project>
       <Name>Unity.AI.Navigation.Samples</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.AI.Navigation.Samples.Initialization.Editor.csproj">
-      <Project>{6FE5F1D3-97AC-130C-C636-1A90BE610FD6}</Project>
+      <Project>{96C090E0-59F1-5089-145A-8A8CD270AFF6}</Project>
       <Name>Unity.AI.Navigation.Samples.Initialization.Editor</Name>
     </ProjectReference>
   </ItemGroup>
