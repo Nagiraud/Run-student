@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
+
+// Gére les mouvement du professeur, et son champs de vision
 [RequireComponent(typeof(NavMeshAgent))]
 public class TeacherController : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class TeacherController : MonoBehaviour
     public float speed;
     NavMeshAgent m_Agent;
 
+    [Header("Vision")]
     [Range(0, 360)] public float angleVision;
     public float DistanceVision;
 
@@ -34,6 +37,7 @@ public class TeacherController : MonoBehaviour
         Look();
     }
 
+    // Vision du professeur
     void Look()
     {
         Collider[] target = Physics.OverlapSphere(transform.position, DistanceVision); // tout les objets à moins de DistaceVision du joueur
@@ -44,15 +48,15 @@ public class TeacherController : MonoBehaviour
                     transform.forward,
                     col.transform.position - transform.position);
 
-                if (Mathf.Abs(signedAngle) < angleVision / 2) { 
-                    Debug.Log("Joueur détécté");
+                if (Mathf.Abs(signedAngle) < angleVision / 2) { // si il se trouve dans l'angle de vision du professeur
+                    col.GetComponent<PlayerController>().GetCaught();
                 }
             }
          }
     }
 
     // Debug : affiche la zone de détéction du joueur
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Handles.color = new Color(0, 1, 0, 0.3f);
         Handles.DrawSolidArc(transform.position,
@@ -60,5 +64,5 @@ public class TeacherController : MonoBehaviour
             Quaternion.AngleAxis(-angleVision/2f,transform.up)*transform.forward,// orientation de l'angle de vue devant le professeur (autant à gauche et à droite)
             angleVision,
             DistanceVision);
-    }*/
+    }
 }
