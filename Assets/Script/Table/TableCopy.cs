@@ -7,19 +7,10 @@ public class TableCopy : MonoBehaviour
     public bool IsCopying=false;
     private float TimeToCopy = 5.0f;
     private float TimePassed;
+    private bool ResultCopy = false;
+    private bool BeenCopied = false;
 
     private IEnumerator coroutine;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartCopy()
     {
@@ -29,10 +20,8 @@ public class TableCopy : MonoBehaviour
             coroutine = Cheating();
             StartCoroutine(coroutine);
         }
-
-
-        
     }
+
     public void StopCopy()
     {
         if (coroutine != null) {
@@ -42,6 +31,15 @@ public class TableCopy : MonoBehaviour
             coroutine= null;
             Debug.Log("STOOOOOOP");
         }
+    }
+
+    public bool GetResult()
+    {
+        if (BeenCopied)
+        {
+            return ResultCopy; //retourne le résultat du score}
+        }
+        return false;
     }
 
     IEnumerator Cheating()
@@ -58,9 +56,17 @@ public class TableCopy : MonoBehaviour
         {
             case "BadStudent":
                 Debug.Log("Pas de réponse");
+                ResultCopy = false;
+                BeenCopied = true;
                 break;
             case "GoodStudent":
                 Debug.Log("Une bonne réponse");
+                ScoreManager.Instance.addScore();
+                BeenCopied = true;
+                tag = "AlreadyCopied";
+                break;
+            case "AlreadyCopied":
+                Debug.Log("Deja copié !");  
                 break;
             default:
                 Debug.Log("Pas de tag ici");

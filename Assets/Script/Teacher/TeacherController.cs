@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +22,13 @@ public class TeacherController : MonoBehaviour
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+        StartCoroutine(Look());
+        
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(Look());
     }
 
 
@@ -34,25 +42,33 @@ public class TeacherController : MonoBehaviour
             m_Agent.speed = speed;
             m_Agent.SetDestination(listePosition[choosen].transform.position);
         }
-        Look();
     }
 
     // Vision du professeur
-    void Look()
+    IEnumerator Look()
     {
-        Collider[] target = Physics.OverlapSphere(transform.position, DistanceVision); // tout les objets à moins de DistaceVision du joueur
-        foreach (Collider col in target) {
-            if (col.tag == "Player")
-            {
-                float signedAngle = Vector3.Angle( // angle du joueur par rapport au centre de vision du professeur
+        while (true) { 
+            Collider[] target = Physics.OverlapSphere(transform.position, DistanceVision); // tout les objets à moins de DistaceVision du joueur
+            foreach (Collider col in target) {
+                if (col.tag == "Player")
+                {
+                    float signedAngle = Vector3.Angle( // angle du joueur par rapport au centre de vision du professeur
                     transform.forward,
                     col.transform.position - transform.position);
 
-                if (Mathf.Abs(signedAngle) < angleVision / 2) { // si il se trouve dans l'angle de vision du professeur
-                    col.GetComponent<PlayerController>().GetCaught();
+                    RaycastHit hit;
+                    // si il se trouve dans l'angle de vision du professeur
+                    if (Physics.Raycast(transform.position, (col.transform.position - transform.position), out hit, DistanceVision) && Mathf.Abs(signedAngle) < angleVision / 2)
+                    {
+                        if (hit.transform.tag == "Player") { // Si aussi détécté par le raycast
+                            Debug.DrawRay(transform.position, (col.transform.position - transform.position) * hit.distance, Color.yellow);
+                            col.GetComponent<PlayerController>().GetCaught();
+                        }
+                    }
                 }
             }
-         }
+            yield return null;
+        }
     }
 
     // Debug : affiche la zone de détéction du joueur

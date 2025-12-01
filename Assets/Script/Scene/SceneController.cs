@@ -5,7 +5,7 @@ public class SceneController : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("LevelProcedural");
     }
 
     public void Quit()

@@ -6,11 +6,14 @@ using UnityEngine.AI;
 public class LeverGenerator : MonoBehaviour
 {
     [Header("Prefabs")]
-    public GameObject tablePrefab;
+    public GameObject UncopyableTablePrefab;
+    public GameObject copyableTablePrefab;
+    public GameObject PlayerTablePrefab;
+    public GameObject PlayerChairPrefab;
     public GameObject chairPrefab;
     public GameObject obstaclePrefab;
    // public GameObject playerStartPrefab;
-    public GameObject copyTablePrefab;
+    
     public GameObject exitPrefab;
 
     [Header("Generation Settings")]
@@ -59,10 +62,19 @@ public class LeverGenerator : MonoBehaviour
         playerStart = Instantiate(playerStartPrefab, playerPos, Quaternion.identity);
         occupiedPositions.Add(playerPos);*/
 
-        // Place copy table at the back
-        Vector3 copyTablePos = new Vector3(roomWidth / 2, 0, roomDepth - 2);
-        copyTable = Instantiate(copyTablePrefab, copyTablePos, Quaternion.identity);
-        occupiedPositions.Add(copyTablePos);
+        // Player Table
+        Vector3 TablePos = new Vector3(roomWidth / 2, 0, 3);
+        copyTable = Instantiate(PlayerTablePrefab, TablePos, Quaternion.identity);
+        occupiedPositions.Add(TablePos);
+
+        // Player chair
+        Vector3 chairOffsets = new Vector3(0, 0, -1f); // South
+        Vector3 chairPos = TablePos + chairOffsets;
+        if (IsPositionValid(chairPos, 1f))
+        {
+            Instantiate(PlayerChairPrefab, chairPos, Quaternion.Euler(new Vector3(0, 90, 0)));
+            occupiedPositions.Add(chairPos);
+        }
 
     }
 
@@ -76,8 +88,12 @@ public class LeverGenerator : MonoBehaviour
             if (tablePos != Vector3.zero)
             {
                 // Instantiate table
-                GameObject table = Instantiate(tablePrefab, tablePos, Quaternion.identity);
+                GameObject table = Instantiate(copyableTablePrefab, tablePos, Quaternion.identity);
                 occupiedPositions.Add(tablePos);
+
+                if (i==0) table.transform.GetChild(0).tag = "GoodStudent"; // Au moins une bonne table
+                table.transform.GetChild(0).tag = Random.Range(0, 100) < 50 ?  "GoodStudent" : "BadStudent"; // le reste est aléatoire
+                
 
                 // Place chairs around the table
                 PlaceChairsAroundTable(tablePos);

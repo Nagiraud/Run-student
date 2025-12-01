@@ -17,13 +17,12 @@ public class PlayerController : MonoBehaviour
     public int speed;
     public int rotationSpeed;
 
+    // GameObject rencontré
     private GameObject TableTriggered;
+    private GameObject SeatTrigger;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
+    // Réponse
+    private int Answer = 0;
 
     private void OnEnable()
     {
@@ -56,7 +55,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Déplacer le personnage
-        GetComponent<CharacterController>().SimpleMove(moveDirection * speed);
+        if(tag!="Sitting")
+            GetComponent<CharacterController>().SimpleMove(moveDirection * speed);
  
     }
 
@@ -69,13 +69,38 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TableTriggered = other.gameObject;
+        switch (other.tag)
+        {
+            case "PlayerSeat":
+                SeatTrigger = other.gameObject;
+                break;
+
+            default:
+                TableTriggered = other.gameObject;
+                break;
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponent<TableCopy>().StopCopy();
-        TableTriggered = null;
+        switch (other.tag)
+        {
+            case "PlayerSeat":
+                SeatTrigger = null;
+                break;
+
+            default:
+                other.GetComponent<TableCopy>().StopCopy();
+                if (other.GetComponent<TableCopy>().GetResult())
+                {
+                    Answer++;
+                }
+
+                TableTriggered = null;
+                break;
+        }
+        
     }
 
     // se faire attraper
@@ -85,15 +110,31 @@ public class PlayerController : MonoBehaviour
         if (TableTriggered) {  
             TableTriggered.GetComponent<TableCopy>().StopCopy();
         }
-        SceneManager.LoadScene("EndingScene");
+        SceneManager.LoadScene("GameOverScene");
     }
 
+    // Le joeur s'assoit a sa place, et regarde si il a gagné
     public void SitPlayer(InputAction.CallbackContext _ctx)
     {
-        if (tag == "Sitting")
-            tag = "Player";
-        else
-            tag = "Sitting";
+        if (SeatTrigger)
+        {
+            if (tag == "Sitting")
+            {
+                tag = "Player";
+            }
+                
+            else
+            {
+                tag = "Sitting";
+                transform.position=SeatTrigger.transform.position;
+                if (ScoreManager.Instance.GetScore()==3)
+                {
+                    SceneManager.LoadScene("WinningScene");
+                }
+            }
+            
+        }
+        
     }
     
 }

@@ -8,6 +8,8 @@ TagManager:
   - BadStudent
   - Sitting
   - Generated
+  - PlayerSeat
+  - AlreadyCopied
   layers:
   - Default
   - TransparentFX
