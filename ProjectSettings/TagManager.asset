@@ -10,6 +10,8 @@ TagManager:
   - Generated
   - PlayerSeat
   - AlreadyCopied
+  - HidingPlace
+  - Hide
   layers:
   - Default
   - TransparentFX

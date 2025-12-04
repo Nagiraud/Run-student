@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Input Actions")]
     public InputActionReference moveAction;
-    public InputActionReference copyAction;
+    public InputActionReference InterractAction;
     public InputActionReference sitAction;
 
     [Header("Action")]
@@ -20,21 +21,23 @@ public class PlayerController : MonoBehaviour
     // GameObject rencontré
     private GameObject TableTriggered;
     private GameObject SeatTrigger;
+    private GameObject HidingPlaceTriggered;
 
     // Réponse
     private int Answer = 0;
+    private bool IsHide = false;
 
     private void OnEnable()
     {
         moveAction.action.Enable();
-        copyAction.action.performed+= CopyStudent;
+        InterractAction.action.performed+= InterractStudent;
         sitAction.action.performed += SitPlayer;
     }
 
     private void OnDisable()
     {
         moveAction.action.Disable();
-        copyAction.action.performed-= CopyStudent;
+        InterractAction.action.performed-= InterractStudent;
         sitAction.action.performed -= SitPlayer;
     }
 
@@ -55,16 +58,22 @@ public class PlayerController : MonoBehaviour
         }
 
         // Déplacer le personnage
-        if(tag!="Sitting")
+        if(tag=="Player")
             GetComponent<CharacterController>().SimpleMove(moveDirection * speed);
  
     }
 
 
     // copier
-    void CopyStudent(InputAction.CallbackContext _ctx) {
+    void InterractStudent(InputAction.CallbackContext _ctx) {
         if(TableTriggered)
             TableTriggered.GetComponent<TableCopy>().StartCopy();
+        if (HidingPlaceTriggered)
+        {
+            Debug.Log("touche appuyé");
+            tag = tag == "Player" ? "Hide" : "Player";
+            gameObject.GetComponent<Renderer>().enabled = !gameObject.GetComponent<Renderer>().enabled;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,7 +83,10 @@ public class PlayerController : MonoBehaviour
             case "PlayerSeat":
                 SeatTrigger = other.gameObject;
                 break;
-
+            case "HidingPlace":
+                Debug.Log("entré placard");
+                HidingPlaceTriggered = other.gameObject;
+                break;
             default:
                 TableTriggered = other.gameObject;
                 break;
@@ -88,6 +100,9 @@ public class PlayerController : MonoBehaviour
         {
             case "PlayerSeat":
                 SeatTrigger = null;
+                break;
+            case "HidingPlace":
+                HidingPlaceTriggered = null;
                 break;
 
             default:

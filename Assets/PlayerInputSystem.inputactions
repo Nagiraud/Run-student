@@ -16,7 +16,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Copy",
+                    "name": "Interract",
                     "type": "Button",
                     "id": "9af8d60c-d56a-4fa6-9ee6-2f47ff97c793",
                     "expectedControlType": "",
@@ -141,7 +141,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Copy",
+                    "action": "Interract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
