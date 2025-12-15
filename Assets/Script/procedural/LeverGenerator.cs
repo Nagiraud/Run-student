@@ -88,7 +88,7 @@ public class LeverGenerator : MonoBehaviour
             if (tablePos != Vector3.zero)
             {
                 // Instantiate table
-                GameObject table = Instantiate(copyableTablePrefab, tablePos, Quaternion.identity);
+                GameObject table = Instantiate(copyableTablePrefab, tablePos, Quaternion.Euler(new Vector3(0, 90, 0)));
                 occupiedPositions.Add(tablePos);
 
                 if (i==0) table.transform.GetChild(0).tag = "GoodStudent"; // Au moins une bonne table
@@ -103,13 +103,13 @@ public class LeverGenerator : MonoBehaviour
 
     void PlaceChairsAroundTable(Vector3 tablePos)
     {
-        Vector3 chairOffsets = new Vector3(0, 0, -1f); // South
+        Vector3 chairOffsets = new Vector3(0, 0, -0.6f); // South
         Vector3 chairPos = tablePos + chairOffsets;
-        if (IsPositionValid(chairPos, 1f))
-        {
+
+            Debug.Log(chairPos);
             Instantiate(chairPrefab, chairPos, Quaternion.Euler(new Vector3(0, 90, 0)));
             occupiedPositions.Add(chairPos);
-        }
+
     }
 
     void GenerateObstacles()

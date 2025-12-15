@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
             TableTriggered.GetComponent<TableCopy>().StartCopy();
         if (HidingPlaceTriggered)
         {
-            Debug.Log("touche appuyé");
             tag = tag == "Player" ? "Hide" : "Player";
             gameObject.GetComponent<Renderer>().enabled = !gameObject.GetComponent<Renderer>().enabled;
         }
