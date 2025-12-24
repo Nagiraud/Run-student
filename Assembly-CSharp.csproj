@@ -67,6 +67,7 @@
     <Compile Include="Assets\Script\Table\TableCopy.cs" />
     <Compile Include="Assets\Script\Teacher\TeacherController.cs" />
     <Compile Include="Assets\Script\Scene\SceneController.cs" />
+    <Compile Include="Assets\Script\Camera\CameraManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

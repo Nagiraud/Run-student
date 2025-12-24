@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     private int Answer = 0;
     private bool IsHide = false;
 
+    //caméra
+    public CameraManager cam;
+
     private void OnEnable()
     {
         moveAction.action.Enable();
@@ -50,6 +53,17 @@ public class PlayerController : MonoBehaviour
         // Si le personnage se déplace
         if (moveDirection.magnitude > 0.1f)
         {
+            
+            Camera MainCamera = cam.GetCurrentCamera();
+            // En fonction de la caméra
+            Vector3 cameraForward = MainCamera.transform.forward;
+            Vector3 cameraRight = MainCamera.transform.right;
+            cameraForward.y = 0;
+            cameraRight.y = 0;
+
+            // Calculer la direction finale
+            moveDirection = cameraForward * Direction.y + cameraRight * Direction.x;
+
             // Calculer la rotation cible vers la direction de déplacement
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection.normalized, Vector3.up);
 
@@ -60,7 +74,7 @@ public class PlayerController : MonoBehaviour
         // Déplacer le personnage
         if(tag=="Player")
             GetComponent<CharacterController>().SimpleMove(moveDirection * speed);
- 
+
     }
 
 

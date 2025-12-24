@@ -64,7 +64,7 @@ public class LeverGenerator : MonoBehaviour
 
         // Player Table
         Vector3 TablePos = new Vector3(roomWidth / 2, 0, 3);
-        copyTable = Instantiate(PlayerTablePrefab, TablePos, Quaternion.identity);
+        copyTable = Instantiate(PlayerTablePrefab, TablePos, Quaternion.Euler(new Vector3(0, 90, 0)));
         occupiedPositions.Add(TablePos);
 
         // Player chair
@@ -118,10 +118,10 @@ public class LeverGenerator : MonoBehaviour
 
         for (int i = 0; i < obstacleCount; i++)
         {
-            Vector3 obstaclePos = FindValidPosition(2f);
+            Vector3 obstaclePos = FindValidPosition(3f);
             if (obstaclePos != Vector3.zero)
             {
-                Instantiate(obstaclePrefab, obstaclePos, Quaternion.identity);
+                Instantiate(obstaclePrefab, obstaclePos+new Vector3(0,1,0), Quaternion.identity);
                 occupiedPositions.Add(obstaclePos);
             }
         }
