@@ -64,9 +64,13 @@
     <Compile Include="Assets\Script\score\ScoreManager.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\procedural\LeverGenerator.cs" />
+    <Compile Include="Assets\DenysAlmaral\CityPeople\Demo_Scenes\Scripts-construction\ToolConfig.cs" />
+    <Compile Include="Assets\DenysAlmaral\CityPeople\Scripts\CityPeople.cs" />
+    <Compile Include="Assets\DenysAlmaral\CityPeople\Demo_Scenes\Scripts-construction\SwapAndToolController.cs" />
     <Compile Include="Assets\Script\Table\TableCopy.cs" />
     <Compile Include="Assets\Script\Teacher\TeacherController.cs" />
     <Compile Include="Assets\Script\Scene\SceneController.cs" />
+    <Compile Include="Assets\DenysAlmaral\CityPeople\Demo_Scenes\Scripts\PackageExporterRefs.cs" />
     <Compile Include="Assets\Script\Camera\CameraManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +91,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\DenysAlmaral\CityPeople\URP&amp;Built-in\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
