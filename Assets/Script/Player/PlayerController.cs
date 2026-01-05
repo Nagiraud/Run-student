@@ -23,18 +23,18 @@ public class PlayerController : MonoBehaviour
     private GameObject SeatTrigger;
     private GameObject HidingPlaceTriggered;
 
-    // Réponse
-    private int Answer = 0;
-    private bool IsHide = false;
-
     //caméra
     public CameraManager cam;
+
+    // Animator
+    private Animator animator;
 
     private void OnEnable()
     {
         moveAction.action.Enable();
         InterractAction.action.performed+= InterractStudent;
         sitAction.action.performed += SitPlayer;
+        animator= GetComponent<Animator>();
     }
 
     private void OnDisable()
@@ -49,6 +49,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 Direction = moveAction.action.ReadValue<Vector2>();
         Vector3 moveDirection = new Vector3(Direction.x, 0, Direction.y);
+
+        // Animation
+        if(moveDirection == Vector3.zero)
+        {
+            animator.SetBool("Speed", false);
+        }
+        else
+        {
+            animator.SetBool("Speed", true);
+        }
 
         // Si le personnage se déplace
         if (moveDirection.magnitude > 0.1f)
@@ -78,14 +88,20 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // copier
+    // Interraction
     void InterractStudent(InputAction.CallbackContext _ctx) {
         if(TableTriggered)
             TableTriggered.GetComponent<TableCopy>().StartCopy();
         if (HidingPlaceTriggered)
         {
             tag = tag == "Player" ? "Hide" : "Player";
-            gameObject.GetComponent<Renderer>().enabled = !gameObject.GetComponent<Renderer>().enabled;
+            // Récupére tout les enfant
+            Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.enabled = !renderer.enabled;
+            }
         }
     }
 
@@ -120,10 +136,6 @@ public class PlayerController : MonoBehaviour
 
             default:
                 other.GetComponent<TableCopy>().StopCopy();
-                if (other.GetComponent<TableCopy>().GetResult())
-                {
-                    Answer++;
-                }
 
                 TableTriggered = null;
                 break;

@@ -68,6 +68,7 @@
     <Compile Include="Assets\DenysAlmaral\CityPeople\Scripts\CityPeople.cs" />
     <Compile Include="Assets\DenysAlmaral\CityPeople\Demo_Scenes\Scripts-construction\SwapAndToolController.cs" />
     <Compile Include="Assets\Script\Table\TableCopy.cs" />
+    <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Teacher\TeacherController.cs" />
     <Compile Include="Assets\Script\Scene\SceneController.cs" />
     <Compile Include="Assets\DenysAlmaral\CityPeople\Demo_Scenes\Scripts\PackageExporterRefs.cs" />

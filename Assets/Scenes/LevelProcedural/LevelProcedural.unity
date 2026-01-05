@@ -214,7 +214,7 @@ MonoBehaviour:
   - {fileID: 885217970}
   - {fileID: 806248266}
   - {fileID: 1546813991}
-  speed: 3
+  speed: 2
   angleVision: 0
   DistanceVision: 0
 --- !u!195 &26055210

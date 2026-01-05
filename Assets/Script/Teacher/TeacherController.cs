@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 
@@ -19,11 +20,15 @@ public class TeacherController : MonoBehaviour
     [Range(0, 360)] public float angleVision;
     public float DistanceVision;
 
+    Animator animator;
+
+
+
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
         StartCoroutine(Look());
-        
+        animator=GetComponent<Animator>();
     }
 
     private void OnDisable()
@@ -36,12 +41,27 @@ public class TeacherController : MonoBehaviour
     {
         if (m_Agent.remainingDistance <= m_Agent.stoppingDistance) //attend que l'agent termine son déplacement
         {
-
+            StartCoroutine(Wait());
             // Choix d'un point de patrouille
             int choosen=Random.Range(0, listePosition.Length);
             m_Agent.speed = speed;
             m_Agent.SetDestination(listePosition[choosen].transform.position);
         }
+
+        // Animation
+        if (m_Agent.speed < 1)
+        {
+            animator.SetBool("IsMoving", false);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", true);
+        }
+
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2);
     }
 
     // Vision du professeur
