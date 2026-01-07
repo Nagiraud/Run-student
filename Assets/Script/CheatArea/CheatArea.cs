@@ -1,8 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Timeline;
+using UnityEngine.UI;
+using LitMotion;
+using LitMotion.Extensions;
+using static System.Net.Mime.MediaTypeNames;
 
 // Gére les table, et l'action de copier
-public class TableCopy : MonoBehaviour
+public class CheatArea : MonoBehaviour
 {
     public bool IsCopying=false;
     private float TimeToCopy = 5.0f;
@@ -14,6 +19,7 @@ public class TableCopy : MonoBehaviour
 
     public void StartCopy()
     {
+        
         if (!IsCopying) // Si il ne copie pas encore
         {
             IsCopying = true;
@@ -29,8 +35,8 @@ public class TableCopy : MonoBehaviour
             TimePassed = 0;
             StopCoroutine(coroutine);
             coroutine= null;
-            Debug.Log("STOOOOOOP");
         }
+        TimeBarManager.Instance.resetProgress();
     }
 
     public bool GetResult()
@@ -49,13 +55,15 @@ public class TableCopy : MonoBehaviour
         {
             TimePassed += Time.deltaTime;
             Debug.Log(TimePassed);
+            TimeBarManager.Instance.SetProgress(TimePassed);
+            TimeBarManager.Instance.SetTextToShow(tag);
             yield return new WaitForEndOfFrame();
         }
 
         switch (tag)
         {
             case "BadStudent":
-                Debug.Log("Pas de réponse");
+
                 ResultCopy = false;
                 BeenCopied = true;
                 break;
@@ -72,6 +80,10 @@ public class TableCopy : MonoBehaviour
                 Debug.Log("Pas de tag ici");
                 break;
         }
+
+        StopCopy();
         Debug.Log("Copié");  
     }
 }
+
+

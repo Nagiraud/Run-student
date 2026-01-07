@@ -91,8 +91,8 @@ public class LeverGenerator : MonoBehaviour
                 GameObject table = Instantiate(copyableTablePrefab, tablePos, Quaternion.Euler(new Vector3(0, 90, 0)));
                 occupiedPositions.Add(tablePos);
 
-                if (i==0) table.transform.GetChild(0).tag = "GoodStudent"; // Au moins une bonne table
-                table.transform.GetChild(0).tag = Random.Range(0, 100) < 50 ?  "GoodStudent" : "BadStudent"; // le reste est aléatoire
+                if (i==0) table.transform.tag = "GoodStudent"; // Au moins une bonne table
+                table.transform.tag = Random.Range(0, 100) < 50 ?  "GoodStudent" : "BadStudent"; // le reste est aléatoire
                 
 
                 // Place chairs around the table

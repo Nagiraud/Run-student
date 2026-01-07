@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     // Interraction
     void InterractStudent(InputAction.CallbackContext _ctx) {
         if(TableTriggered)
-            TableTriggered.GetComponent<TableCopy>().StartCopy();
+            TableTriggered.GetComponent<CheatArea>().StartCopy();
         if (HidingPlaceTriggered)
         {
             tag = tag == "Player" ? "Hide" : "Player";
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
                 break;
 
             default:
-                other.GetComponent<TableCopy>().StopCopy();
+                other.GetComponent<CheatArea>().StopCopy();
 
                 TableTriggered = null;
                 break;
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
     public void GetCaught()
     {
         if (TableTriggered) {  
-            TableTriggered.GetComponent<TableCopy>().StopCopy();
+            TableTriggered.GetComponent<CheatArea>().StopCopy();
         }
         SceneManager.LoadScene("GameOverScene");
     }
@@ -169,7 +169,11 @@ public class PlayerController : MonoBehaviour
                 transform.position=SeatTrigger.transform.position;
                 if (ScoreManager.Instance.GetScore()==3)
                 {
+                    Debug.Log("Sit");
+                    ScoreManager.Instance.StopTimer();
+                    Debug.Log("timer stop");
                     SceneManager.LoadScene("WinningScene");
+                    Debug.Log("Winning scene");
                 }
             }
             

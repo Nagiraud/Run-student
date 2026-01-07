@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &324816633000301814
+--- !u!1 &6131225303131017307
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6538003841876649861}
-  - component: {fileID: 8418758014090120386}
-  - component: {fileID: 267665947341364455}
+  - component: {fileID: 7887067430112043076}
+  - component: {fileID: 3311919038872404284}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -18,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6538003841876649861
+--- !u!4 &7887067430112043076
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324816633000301814}
+  m_GameObject: {fileID: 6131225303131017307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.59, z: 0}
   m_LocalScale: {x: 1.7709, y: 1, z: 2.0029733}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8902080534650936345}
+  m_Father: {fileID: 4978663415112660734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8418758014090120386
+--- !u!65 &3311919038872404284
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324816633000301814}
+  m_GameObject: {fileID: 6131225303131017307}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -48,26 +47,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &267665947341364455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324816633000301814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4fc2aeb6e97f3e40a55ec0f7bee6a5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TableCopy
-  IsCopying: 0
---- !u!1001 &8935197090535226354
+  m_Size: {x: 0.627932, y: 1.0078827, z: 0.6426956}
+  m_Center: {x: 0.08078558, y: -0.09120971, z: -0.00038495054}
+--- !u!1001 &4800127476690358549
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -77,15 +63,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.382293
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.64176947
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 6.4185705
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
       propertyPath: m_LocalRotation.w
@@ -124,24 +110,32 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6538003841876649861}
+      addedObject: {fileID: 7887067430112043076}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4961988186684827773}
+      addedObject: {fileID: 2313031658673037524}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1389708642494963712}
   m_SourcePrefab: {fileID: 100100000, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
---- !u!1 &8124876049247471267 stripped
+--- !u!4 &4978663415112660734 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
+  m_PrefabInstance: {fileID: 4800127476690358549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5646409283788975172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
-  m_PrefabInstance: {fileID: 8935197090535226354}
+  m_PrefabInstance: {fileID: 4800127476690358549}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &4961988186684827773
+--- !u!65 &2313031658673037524
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8124876049247471267}
+  m_GameObject: {fileID: 5646409283788975172}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -150,14 +144,23 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1199999, y: 1.0011644, z: 1.3015391}
-  m_Center: {x: 0.16304561, y: 0.492846, z: 0}
---- !u!4 &8902080534650936345 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0af9103527e3b524e9fb069d82307a78, type: 3}
-  m_PrefabInstance: {fileID: 8935197090535226354}
+  m_Size: {x: 1.6375364, y: 1.0329744, z: 2.0221844}
+  m_Center: {x: 0.18179327, y: 0.5200208, z: -0.081457734}
+--- !u!114 &1389708642494963712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5646409283788975172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fc2aeb6e97f3e40a55ec0f7bee6a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TableCopy
+  IsCopying: 0
+  progress: {fileID: 0}
