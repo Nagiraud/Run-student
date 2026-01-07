@@ -66,12 +66,13 @@ public class CheatArea : MonoBehaviour
 
                 ResultCopy = false;
                 BeenCopied = true;
+                tag = "AlreadyCopied";
                 break;
             case "GoodStudent":
                 Debug.Log("Une bonne réponse");
                 ScoreManager.Instance.addScore();
                 BeenCopied = true;
-                tag = "AlreadyCopied";
+                
                 break;
             case "AlreadyCopied":
                 Debug.Log("Deja copié !");  
