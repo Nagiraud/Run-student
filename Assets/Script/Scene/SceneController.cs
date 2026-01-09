@@ -5,12 +5,16 @@ public class SceneController : MonoBehaviour
 {
     public void Restart()
     {
+        StopAudio();
+
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("LevelProcedural");
     }
 
     public void ToStartingScene()
     {
+        StopAudio();
+
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("MenuScene");
     }
@@ -22,10 +26,21 @@ public class SceneController : MonoBehaviour
 
     public void Unfreeze()
     {
+        
         GameManager.Instance.IsPaused = false;
         Time.timeScale = 1f;
         GameManager.Instance.pauseMenuUI.gameObject.SetActive(false);
         AudioListener.pause = false;
+    }
+
+    private void StopAudio()
+    {
+        AudioSource[] allAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.Stop();
+        }
     }
 
 }

@@ -17,6 +17,11 @@ public class TimeBarManager : MonoBehaviour
     public TMP_Text textGoodCopy;
     private string textToShow;
 
+    [Header("Audio")]
+    private AudioSource srcAudio;
+    public AudioClip clipGoodAnswer;
+    public AudioClip clipBadAnswer;
+
     bool IsShow =false;
     float progress;
 
@@ -31,6 +36,7 @@ public class TimeBarManager : MonoBehaviour
         Instance = this;
 
         textGoodCopy.gameObject.SetActive(false);
+        srcAudio = GetComponent<AudioSource>();
     }
 
     public void SetTextToShow(string txt)
@@ -63,20 +69,17 @@ public class TimeBarManager : MonoBehaviour
         slider.value = progress;
     }
 
-    void showProgressBar()
-    {
-        slider.GetComponent<Renderer>().enabled = IsShow;
-    }
-
     IEnumerator AnimateText()
     {
         switch (textToShow)
         {
             case "BadStudent":
                 textGoodCopy.text = "Mauvaise réponse !";
+                srcAudio.PlayOneShot(clipBadAnswer);
                 break;
             case "GoodStudent":
                 textGoodCopy.text = "Bonne réponse !";
+                srcAudio.PlayOneShot(clipGoodAnswer);
                 break;
             case "AlreadyCopied":
                 textGoodCopy.text = "Déja copié !";
