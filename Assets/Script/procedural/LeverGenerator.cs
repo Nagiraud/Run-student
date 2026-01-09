@@ -121,7 +121,10 @@ public class LeverGenerator : MonoBehaviour
             Vector3 obstaclePos = FindValidPosition(3f);
             if (obstaclePos != Vector3.zero)
             {
-                Instantiate(obstaclePrefab, obstaclePos+new Vector3(0,1,0), Quaternion.identity);
+                // aléatoire : soit rotation à 0 ou 90
+                float randomRotation = Random.Range(0, 1) < 0.5 ? 90f : 90f;
+
+                Instantiate(obstaclePrefab, obstaclePos+new Vector3(0,1,0), Quaternion.Euler(0, randomRotation,0));
                 occupiedPositions.Add(obstaclePos);
             }
         }
