@@ -416,12 +416,12 @@ MonoBehaviour:
   PlayerTablePrefab: {fileID: 3971377716752190481, guid: 997af8d6896561841a58ed2c61fb4571, type: 3}
   PlayerChairPrefab: {fileID: 5745888707395906497, guid: 84469e1b89b64304b9b1b7af2447b188, type: 3}
   chairPrefab: {fileID: 7966949733159534052, guid: 6c8b81404b206a4429568cf82b8841ec, type: 3}
-  obstaclePrefab: {fileID: 8503878861147745334, guid: 17c8c11e1ebb98f40ac41b9141cab82e, type: 3}
+  obstaclePrefab: {fileID: 5791123038149591171, guid: 07847f8b4c5562942bfed36a15a97180, type: 3}
   exitPrefab: {fileID: 0}
   roomWidth: 20
-  roomDepth: 18
+  roomDepth: 16
   minTables: 8
-  maxTables: 20
+  maxTables: 16
   minObstacles: 2
   maxObstacles: 5
   navMeshSurface: {fileID: 600181646}
@@ -2415,7 +2415,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 826348421}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4094,7 +4094,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1263450779}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4673,7 +4673,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1418225033}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:

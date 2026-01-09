@@ -115,16 +115,18 @@ public class LeverGenerator : MonoBehaviour
     void GenerateObstacles()
     {
         int obstacleCount = Random.Range(minObstacles, maxObstacles + 1);
+        float[] allowedRotations = { 0f, 90f, 180f, 270f };
 
         for (int i = 0; i < obstacleCount; i++)
         {
-            Vector3 obstaclePos = FindValidPosition(3f);
+            Vector3 obstaclePos = FindValidPosition(2f);
             if (obstaclePos != Vector3.zero)
             {
-                // aléatoire : soit rotation à 0 ou 90
-                float randomRotation = Random.Range(0, 1) < 0.5 ? 90f : 90f;
+                // aléatoire : une des 4 directions
+                int randomIndex = Random.Range(0, 3);
+                float randomRotation = allowedRotations[randomIndex] ;
 
-                Instantiate(obstaclePrefab, obstaclePos+new Vector3(0,1,0), Quaternion.Euler(0, randomRotation,0));
+                Instantiate(obstaclePrefab, obstaclePos+new Vector3(0,1,0), Quaternion.Euler(-90, randomRotation,0));
                 occupiedPositions.Add(obstaclePos);
             }
         }
