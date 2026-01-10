@@ -6,6 +6,7 @@ using LitMotion.Extensions;
 using static UnityEngine.GraphicsBuffer;
 using System.Collections;
 
+// Géres la barre de temps
 public class TimeBarManager : MonoBehaviour
 {
 
@@ -69,6 +70,7 @@ public class TimeBarManager : MonoBehaviour
         slider.value = progress;
     }
 
+    // Affiche le résulat de la copie au dessus de la barre
     IEnumerator AnimateText()
     {
         switch (textToShow)

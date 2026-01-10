@@ -27,6 +27,9 @@ public class LeverGenerator : MonoBehaviour
     [Header("NavMesh")]
     public NavMeshSurface navMeshSurface;
 
+    [Header("Student")]
+    public GameObject[] studentModel;
+
     private List<Vector3> occupiedPositions = new List<Vector3>();
     private GameObject playerStart;
     private GameObject copyTable;
@@ -39,28 +42,25 @@ public class LeverGenerator : MonoBehaviour
     void GenerateClassroom()
     {
 
-        // Place key elements first
+        // Element clé : bureau du joueur
         PlaceKeyElements();
 
-        // Generate tables and chairs
+        // toute les tables
         GenerateTables();
 
-        // Generate obstacles
+        // obsstacle
         GenerateObstacles();
 
-        // Build NavMesh
+        // NavMesh
         BuildNavMesh();
 
-        // Verify path accessibility
+        // Vérifie que les table ne bloque pas le joueur
         VerifyAccessibility();
     }
 
+    // Element clé : bureau du joueur
     void PlaceKeyElements()
     {
-        // Place player start at the front
-        /*Vector3 playerPos = new Vector3(roomWidth / 2, 0, 1);
-        playerStart = Instantiate(playerStartPrefab, playerPos, Quaternion.identity);
-        occupiedPositions.Add(playerPos);*/
 
         // Player Table
         Vector3 TablePos = new Vector3(roomWidth / 2, 0, 3);
@@ -78,6 +78,7 @@ public class LeverGenerator : MonoBehaviour
 
     }
 
+    // Toute les tables
     void GenerateTables()
     {
         int tableCount = Random.Range(minTables, maxTables + 1);
@@ -101,17 +102,22 @@ public class LeverGenerator : MonoBehaviour
         }
     }
 
+    // Chaise et NPC assit dessus tiré aléatoirement
     void PlaceChairsAroundTable(Vector3 tablePos)
     {
         Vector3 chairOffsets = new Vector3(0, 0, -0.6f); // South
         Vector3 chairPos = tablePos + chairOffsets;
 
-            Debug.Log(chairPos);
-            Instantiate(chairPrefab, chairPos, Quaternion.Euler(new Vector3(0, 90, 0)));
-            occupiedPositions.Add(chairPos);
+        Instantiate(chairPrefab, chairPos, Quaternion.Euler(new Vector3(0, 90, 0)));
+        occupiedPositions.Add(chairPos);
+        
+        // Création des élèves assis
+        int randomModel=Random.Range(0, studentModel.Length);
+        Instantiate(studentModel[randomModel], chairPos-new Vector3(0,0.1f,0.5f), Quaternion.identity);
 
     }
 
+    // Obstacle
     void GenerateObstacles()
     {
         int obstacleCount = Random.Range(minObstacles, maxObstacles + 1);
@@ -132,6 +138,7 @@ public class LeverGenerator : MonoBehaviour
         }
     }
 
+    // Prend une position aléatoire dans la salle
     Vector3 FindValidPosition(float minDistance)
     {
         int attempts = 0;
@@ -153,7 +160,7 @@ public class LeverGenerator : MonoBehaviour
             attempts++;
         }
 
-        return Vector3.zero; // No valid position found
+        return Vector3.zero; 
     }
 
     Vector3 FindValidPositionNear(Vector3 referencePos, float maxDistance)
@@ -183,9 +190,10 @@ public class LeverGenerator : MonoBehaviour
             attempts++;
         }
 
-        return referencePos + new Vector3(2, 0, 0); // Fallback position
+        return referencePos + new Vector3(2, 0, 0);
     }
 
+    // Vérifie que la position ne soit pas deja prise
     bool IsPositionValid(Vector3 position, float minDistance)
     {
         // Check room boundaries
@@ -207,6 +215,7 @@ public class LeverGenerator : MonoBehaviour
         return true;
     }
 
+    // Création du Navmesh
     void BuildNavMesh()
     {
         if (navMeshSurface != null)
@@ -215,6 +224,7 @@ public class LeverGenerator : MonoBehaviour
         }
     }
 
+    // vérification que le joueur ne soit pas bloqué
     void VerifyAccessibility()
     {
         if (playerStart == null || copyTable == null) return;

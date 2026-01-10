@@ -69,21 +69,18 @@ public class CheatArea : MonoBehaviour
                 tag = "AlreadyCopied";
                 break;
             case "GoodStudent":
-                Debug.Log("Une bonne réponse");
+                tag = "AlreadyCopied";
                 ScoreManager.Instance.addScore();
                 BeenCopied = true;
                 
                 break;
             case "AlreadyCopied":
-                Debug.Log("Deja copié !");  
                 break;
             default:
-                Debug.Log("Pas de tag ici");
                 break;
         }
 
         StopCopy();
-        Debug.Log("Copié");  
     }
 }
 

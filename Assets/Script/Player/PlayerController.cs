@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
         sitAction.action.performed -= SitPlayer;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 Direction = moveAction.action.ReadValue<Vector2>();
@@ -88,7 +87,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // Interraction
+    // Interraction (touche E)
     void InterractStudent(InputAction.CallbackContext _ctx) {
         if(TableTriggered)
             TableTriggered.GetComponent<CheatArea>().StartCopy();
@@ -105,6 +104,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Vérification des triggers
     private void OnTriggerEnter(Collider other)
     {
         switch (other.tag)
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // se faire attraper
+    // Se faire attraper
 
     public void GetCaught()
     {
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene("GameOverScene");
     }
 
-    // Le joeur s'assoit a sa place, et regarde si il a gagné
+    // Le joeur s'assoit à sa place, et regarde si il a gagné
     public void SitPlayer(InputAction.CallbackContext _ctx)
     {
         if (SeatTrigger)
@@ -161,19 +161,18 @@ public class PlayerController : MonoBehaviour
             if (tag == "Sitting")
             {
                 tag = "Player";
+                animator.SetBool("IsSitting", false);
             }
                 
             else
             {
                 tag = "Sitting";
-                transform.position=SeatTrigger.transform.position;
+                animator.SetBool("IsSitting", true);
+                transform.position=SeatTrigger.transform.position+new Vector3(0,0,0.2f);
                 if (ScoreManager.Instance.GetScore()==3)
                 {
-                    Debug.Log("Sit");
                     ScoreManager.Instance.StopTimer();
-                    Debug.Log("timer stop");
                     SceneManager.LoadScene("WinningScene");
-                    Debug.Log("Winning scene");
                 }
             }
             

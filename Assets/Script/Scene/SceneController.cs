@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+// Gères les changement de scéne depuis les différends menus
 public class SceneController : MonoBehaviour
 {
     public void Restart()
@@ -33,6 +35,7 @@ public class SceneController : MonoBehaviour
         AudioListener.pause = false;
     }
 
+    // Stop tout les audio avant de changer de scéne
     private void StopAudio()
     {
         AudioSource[] allAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);

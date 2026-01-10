@@ -215,8 +215,8 @@ MonoBehaviour:
   - {fileID: 806248266}
   - {fileID: 1546813991}
   speed: 2
-  angleVision: 0
-  DistanceVision: 0
+  angleVision: 90
+  DistanceVision: 8
 --- !u!195 &26055210
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -425,6 +425,10 @@ MonoBehaviour:
   minObstacles: 2
   maxObstacles: 5
   navMeshSurface: {fileID: 600181646}
+  studentModel:
+  - {fileID: 4652386042781422319, guid: e0624dc54b6ab5348bafe2da005db926, type: 3}
+  - {fileID: 4652386042781422319, guid: 2fbf037f1c8573549ab2c234bb452421, type: 3}
+  - {fileID: 4652386042781422319, guid: 228ad7c7020b9e54eabb7daaa7b3115a, type: 3}
 --- !u!4 &114446016
 Transform:
   m_ObjectHideFlags: 0
@@ -2110,15 +2114,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6367566384277174298, guid: 87a7b985b15a4244091de35d7df9169a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.7629
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 6367566384277174298, guid: 87a7b985b15a4244091de35d7df9169a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6367566384277174298, guid: 87a7b985b15a4244091de35d7df9169a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.6616
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6367566384277174298, guid: 87a7b985b15a4244091de35d7df9169a, type: 3}
       propertyPath: m_LocalRotation.w

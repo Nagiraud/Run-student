@@ -92,7 +92,7 @@ public class TeacherController : MonoBehaviour
     }
 
     // Debug : affiche la zone de détéction du joueur
-    private void OnDrawGizmos()
+   /*private void OnDrawGizmos()
     {
         Handles.color = new Color(0, 1, 0, 0.3f);
         Handles.DrawSolidArc(transform.position,
@@ -100,5 +100,5 @@ public class TeacherController : MonoBehaviour
             Quaternion.AngleAxis(-angleVision/2f,transform.up)*transform.forward,// orientation de l'angle de vue devant le professeur (autant à gauche et à droite)
             angleVision,
             DistanceVision);
-    }
+    }*/
 }

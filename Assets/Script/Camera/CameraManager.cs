@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Gères le changement de caméra
 public class CameraManager : MonoBehaviour
 {
     public List<Camera> cameras = new List<Camera>();
@@ -9,7 +10,6 @@ public class CameraManager : MonoBehaviour
 
     [Header("Input Actions")]
     public InputActionReference cameraAction;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (cameras.Count > 0)
@@ -28,7 +28,7 @@ public class CameraManager : MonoBehaviour
         cameraAction.action.performed -= SwitchCamera;
     }
 
-    // Update is called once per frame
+    // caméra suivante (touche C appuyé)
     void SwitchCamera(InputAction.CallbackContext _ctx)
     {
          NextCamera();
@@ -43,6 +43,7 @@ public class CameraManager : MonoBehaviour
         UpdateCameras();
     }
 
+    // changement d'état : activé ou désactivé
     private void UpdateCameras()
     {
         for (int i = 0; i < cameras.Count; i++)
@@ -51,15 +52,7 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void SwitchToCamera(int index)
-    {
-        if (index >= 0 && index < cameras.Count)
-        {
-            currentCameraIndex = index;
-            UpdateCameras();
-        }
-    }
-
+    // Donne la caméra actuel au joueur (les déplacement vont étre ajusté en fonction de la caméra)
     public Camera GetCurrentCamera()
     {
         return cameras[currentCameraIndex];
